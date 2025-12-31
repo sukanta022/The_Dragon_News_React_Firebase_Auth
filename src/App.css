@@ -6,3 +6,7 @@
 *{
   font-family: "Poppins", sans-serif;
 }
+
+a.active {
+  @apply bg-[#E7E7E7]
+}
