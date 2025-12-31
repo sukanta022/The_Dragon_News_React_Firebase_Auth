@@ -1,8 +1,9 @@
 import { FaStar, FaEye } from "react-icons/fa";
 import { IoBookmarkOutline, IoShareSocialOutline  } from "react-icons/io5";
-import { NavLink } from "react-router";
+import { Link} from "react-router";
 const NewsCard = ({ news }) => {
   const {
+    id,
     title,
     rating,
     total_view,
@@ -54,7 +55,7 @@ const NewsCard = ({ news }) => {
             ? details.slice(0, 180) + "..."
             : details}
             <br></br>
-            <NavLink>Read more</NavLink>
+            <Link to={`/news-details/${id}`} className="text-amber-900">Read more</Link> 
         </div>
 
         {/* Tags */}
