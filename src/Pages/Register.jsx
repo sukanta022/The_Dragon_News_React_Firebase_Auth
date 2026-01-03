@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Navbar from '../Components/Navbar';
 import { AuthContext } from '../provider/AuthProvider';
 
@@ -10,7 +10,7 @@ const Register = () => {
     const [success, setSuccess] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const { createUser,updateUserProfile } = use(AuthContext)
-
+    const navigate = useNavigate()
     const handlePasswordFeild = (e) => {
         e.preventDefault()
         setShowPassword(!showPassword)
@@ -49,6 +49,7 @@ const Register = () => {
             .catch((error)=>{console.log(error)})
             console.log(result.user)
             setSuccess(true)
+            navigate("/")
         })
         .catch((error) => {
             setError(error.message)

@@ -1,5 +1,5 @@
 import React, { use, useRef, useState } from 'react';
-import { Link} from 'react-router';
+import { Link, useLocation, useNavigate} from 'react-router';
 import Navbar from '../Components/Navbar';
 import { AuthContext } from '../provider/AuthProvider';
 const Login = () => {
@@ -7,6 +7,10 @@ const Login = () => {
     const [success, setSuccess] = useState(false)
     const emailRef = useRef()
     const {userSignIn} = use(AuthContext)
+
+    const location = useLocation()
+    console.log(location)
+    const navigate = useNavigate()
     const handleLogin = (e) => {
         e.preventDefault()
         const email = e.target.email.value
@@ -16,7 +20,12 @@ const Login = () => {
         setSuccess(false)
 
         userSignIn(email,password)
-        .then((result) => console.log(result.user))
+        .then((result) => {
+            console.log(result.user)
+            navigate(`${location.state ? location.state : "/"}`)
+        })
+            
+        
         .catch((error) => setError(error.message))
         
         
